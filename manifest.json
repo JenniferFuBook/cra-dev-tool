@@ -1,13 +1,12 @@
 {
-  "name": "Vite Dev Tool",
+  "name": "CRA Dev Tool",
   "version": "1.0",
-  "description": "A Chrome browser extension tool for your Vite app",
+  "description": "A Chrome browser extension tool for your Create React App",
   "permissions": [
     "declarativeNetRequest"
   ],
   "host_permissions": [
-    "*://*.github.io/**",
-    "*://*.127.0.0.1/**"
+    "*://*.myDomain.com/**"
   ],
   "background": {
     "service_worker": "background.js"
@@ -15,7 +14,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.github.io/**"
+        "*://*.myDomain.com/**"
       ],
       "js": [
         "content.js"
