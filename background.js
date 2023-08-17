@@ -30,13 +30,11 @@ const RULES = [
     action: {
       type: 'redirect',
       redirect: {
-        transform: {
-          host: `${localFEServer}/static/js`,
-        },
+        regexSubstitution: `${localFEServer}/static/js/\\2.chunk.js`
       },
     },
     condition: {
-      regexFilter: 'chunk',
+      regexFilter: "^(.*).myDomain.com\\/static\\/js\\/(.*).chunk\\.js",
       resourceTypes: ['script'],
     },
   },
@@ -45,13 +43,11 @@ const RULES = [
     action: {
       type: 'redirect',
       redirect: {
-        transform: {
-          host: localWPServer,
-        },
+        regexSubstitution: `${localWPServer}/assets/react/js/chunk.\\2.js`
       },
     },
     condition: {
-      regexFilter: '[a-zA-Z0-9]+\\.manifest\\.js',
+      regexFilter: "^(.*).myDomain.com\\/assets\\/react\\/js\\/chunk.(.*)\\.js",
       resourceTypes: ['script'],
     },
   },
@@ -60,13 +56,11 @@ const RULES = [
     action: {
       type: 'redirect',
       redirect: {
-        transform: {
-          host: localWPServer,
-        },
+        url: `${localWPServer}/assets/react/js/ReactComponents.js`,
       },
     },
     condition: {
-      regexFilter: '[a-zA-Z0-9]+\\.vendor\\.js',
+      urlFilter: '*.ReactComponents.js',
       resourceTypes: ['script'],
     },
   },
@@ -75,28 +69,11 @@ const RULES = [
     action: {
       type: 'redirect',
       redirect: {
-        transform: {
-          host: localWPServer,
-        },
+        url: `${localWPServer}/assets/react/css/ReactComponents.css`,
       },
     },
     condition: {
-      regexFilter: '[a-zA-Z0-9]+\\.ReactComponents\\.js',
-      resourceTypes: ['script'],
-    },
-  },
-  {
-    id: 7,
-    action: {
-      type: 'redirect',
-      redirect: {
-        transform: {
-          host: localWPServer,
-        },
-      },
-    },
-    condition: {
-      regexFilter: '[a-zA-Z0-9]+\\.ReactComponents\\.css',
+      urlFilter: '*.ReactComponents.css',
       resourceTypes: ['stylesheet'],
     },
   },
